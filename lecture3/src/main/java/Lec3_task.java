@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Lec3_task {
     public static void main(String[] args) {
@@ -31,9 +32,8 @@ public class Lec3_task {
         delay.until(ExpectedConditions.visibilityOfElementLocated(locator2));
         driver.findElement(locator2).sendKeys("category1");
         driver.findElement(By.id("category_form_submit_btn")).click();
-        By locator3 = By.xpath("//div[@class='alert-success']");
-        delay.until(ExpectedConditions.visibilityOfElementLocated(locator3));
-        
-        //System.out.println(driver.findElement(locator3).getText());
+        By locator3 = By.xpath("//div[@id='content']/div[3]/div");
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        System.out.println(driver.findElement(locator3).getText());
     }
 }
