@@ -35,5 +35,12 @@ public class Lec3_task {
         By locator3 = By.xpath("//div[@id='content']/div[3]/div");
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         System.out.println(driver.findElement(locator3).getText());
+        By locator4 = By.id("table-category");
+        delay.until(ExpectedConditions.visibilityOfElementLocated(locator4));
+        driver.findElement(By.xpath("//table[@id='table-category']/thead/tr/th[3]/span/a[2]")).click();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        List<WebElement> categories_new = driver.findElements(By.xpath("//table[@id='table-category']/tbody/tr/td[3]"));
+        for (int i = 0; i <= categories_new.size()-1; i++)
+            if (categories_new.get(i).getText().equals("category1")) System.out.println("Created category is found");*/
     }
 }
