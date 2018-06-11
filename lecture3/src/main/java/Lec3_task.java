@@ -34,7 +34,6 @@ public class Lec3_task {
         Random rand = new Random();
         Integer category_num = rand.nextInt(999);
         String category_name = "category" + category_num;
-        System.out.println(category_name);
         driver.findElement(locator2).sendKeys(category_name);
         driver.findElement(By.id("category_form_submit_btn")).click();
         By locator3 = By.xpath("//div[@id='content']/div[3]/div");
