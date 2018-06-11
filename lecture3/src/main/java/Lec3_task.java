@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class Lec3_task {
@@ -30,7 +31,11 @@ public class Lec3_task {
         driver.findElement(locator1).click();
         By locator2 = By.id("name_1");
         delay.until(ExpectedConditions.visibilityOfElementLocated(locator2));
-        driver.findElement(locator2).sendKeys("category1");
+        Random rand = new Random();
+        Integer category_num = rand.nextInt(999);
+        String category_name = "category" + category_num;
+        System.out.println(category_name);
+        driver.findElement(locator2).sendKeys(category_name);
         driver.findElement(By.id("category_form_submit_btn")).click();
         By locator3 = By.xpath("//div[@id='content']/div[3]/div");
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -41,6 +46,8 @@ public class Lec3_task {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         List<WebElement> categories_new = driver.findElements(By.xpath("//table[@id='table-category']/tbody/tr/td[3]"));
         for (int i = 0; i <= categories_new.size()-1; i++)
-            if (categories_new.get(i).getText().equals("category1")) System.out.println("Created category is found");*/
+            if (categories_new.get(i).getText().equals(category_name)) {
+                System.out.println("Created " + category_name + " is found");
+            }
     }
 }
